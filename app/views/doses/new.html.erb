@@ -1,0 +1,8 @@
+<div class="dose-new-main-controller controller">
+    <h1>Add Dose For: <%= @cocktail.name.split.map(&:capitalize).join(" ") %></h1>
+    <%= simple_form_for [@cocktail, @dose],  html: { class: 'px-4 py-3' }  do |f| %>
+          <%= f.input :description, label:"Amount of:", placeholder: 'Amount' %>
+          <%= f.input :ingredient, label:"Ingredient" , as: :select, collection: Ingredient::ALL_INGREDIENTS.map {|ingredient| [ingredient.name.capitalize, ingredient.id] } %>
+          <%= f.button :submit, 'Add 🍺', class: 'btn btn-primary btn-block' %>
+    <% end %>
+</div>

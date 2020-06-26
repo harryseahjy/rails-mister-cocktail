@@ -1,0 +1,12 @@
+<div class="main-container container index-main-container">
+    <div class="row col-md-8 mx-auto">
+        <% @cocktails.each do |cocktail| %>
+            <div class="card cocktail-card col-md-4 col-bg-3 text-wrap text-center justify-content-center text-truncate">
+                <div class="cocktail-title">
+                    <h4><%= link_to cocktail.name.split.map(&:capitalize).join(' '), cocktail_path(cocktail) %></h4>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+

@@ -1,0 +1,22 @@
+<div class="show-main-container container">
+    <div class="row">
+        <div class="cocktail-image"></div>
+    </div>
+    <div class="row">
+        <div class="cocktail-info">
+            <h1><%= @cocktail.name.split.map(&:capitalize).join(" ") %></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="doses-info">
+            <h4>Ingredients:</h4>
+            <ul>
+                <% @doses.each do |dose| %>
+                <li><%= dose %></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+    <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) %>
+</div>
+
