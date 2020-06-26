@@ -1,16 +1,23 @@
-<div class="navbar">
+<div class="navbar navbar-show">
     <%= render "layouts/navbar" %>
 </div>
-<div class="show-main-container container">
-
-    <div class="row mx-auto d-flex justify-content-center my-5">
+<% if @cocktail.photo.attached? %>
+    <div class="cocktail-image vw-100 vh-100 d-flex justify-content-center align-items-center"  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @cocktail.photo.key %>')">
         <div class="cocktail-info">
             <h1><%= @cocktail.name.split.map(&:capitalize).join(" ") %></h1>
         </div>
     </div>
+<% else %>
+    <div class="cocktail-image vh-100 vw-100" style="background-image: url("https://source.unsplash.com/user/jackie/likes/1600x900");">
 
-    <div class="row d-flex justify-content-between flex-row">
-        <div class="doses-info col-5">
+    </div>
+<% end %>
+
+<div class="cocktail-info container my-3">
+
+    <div class="row d-flex">
+
+        <div class="doses-info col-6">
             <h4>Ingredients:</h4>
             <ul class="list-group">
                 <% @doses.each do |dose| %>
@@ -18,18 +25,7 @@
                 <% end %>
             </ul>
         </div>
-
-        <div class="cocktail-image col-6">
-            <% if @cocktail.photo.attached? %>
-                <%= cl_image_tag @cocktail.photo.key, height: 300 %>
-            <% else %>
-                <p><%= "no photo" %></p>
-            <% end %>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="new-dose-form col-12">
+        <div class="new-dose-form col-6">
             <%= simple_form_for [@cocktail, @new_dose], url: cocktail_doses_path(@cocktail), html: { class: 'px-4 py-3' }  do |f| %>
                   <%= f.input :description, label:"Amount of:", placeholder: 'Amount' %>
                   <%= f.input :ingredient, label:"Ingredient" , as: :select, collection: Ingredient::ALL_INGREDIENTS.map {|ingredient| [ingredient.name.capitalize, ingredient.id] } %>
@@ -38,6 +34,7 @@
             <% end %>
         </div>
     </div>
+
 
 </div>
 

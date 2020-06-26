@@ -26,6 +26,7 @@ require 'open-uri'
   ingredient_names.each do |name|
     result = Ingredient.find_by name: name.downcase
     result = Ingredient.create!(name: name.downcase) if result.nil?
+    p ingredient_names
     ingredients << result
   end
   amounts = data.select { |key, _| key.to_s.match(/strMeasure/) }.values.compact

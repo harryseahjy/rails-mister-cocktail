@@ -10,3 +10,18 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+
+.navbar {
+    background-color: transparent !important;
+
+    a{
+        color: white !important;
+    }
+    .dropdown-toggle{
+        background-color: $dark-gray !important;
+        border-radius:  5px !important;
+    }
+}
+
+

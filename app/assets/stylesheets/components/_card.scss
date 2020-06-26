@@ -9,3 +9,28 @@
 // .cocktail-title {
 //     position: absolute
 // }
+.cocktail-card {
+    height: 150px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    padding: 0 40px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    position: relative;
+
+    span {
+        color: white !important;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 2;
+        top: 0px;
+        left: 0px;
+        display: flex;
+        justify-content: center !important;
+        text-align: center;
+        align-items: center;
+        font-size: 26px;
+    }
+}

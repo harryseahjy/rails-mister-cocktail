@@ -1,16 +1,29 @@
 <div class="navbar">
     <%= render 'layouts/navbar', class: "navbar" %>
 </div>
-<div class="main-container container index-main-container d-flex justify-content-between">
-    <div class="row col-md-12 col-lg-12 mx-auto">
-        <% @cocktails.each do |cocktail| %>
-
-            <div class="card cocktail-card col-md-3 col-bg-2 text-wrap text-center  card bg-dark text-white m-3">
-                <%= cl_image_tag "#{cocktail.photo.key}", class:"card-img w-100", height: 300, width: 300, crop: :fill%>
-                <div class="cocktail-title card-img-overlay">
-                    <h4><%= link_to cocktail.name.split.map(&:capitalize).join(' '), cocktail_path(cocktail) %></h4>
-                </div>
+<div class="main-container container index-main-container d-flex flex-column justify-content-between my-4">
+    <div class="index-header">
+        <div class="row my-5">
+            <div class="col-12 mx-auto text-center">
+                <h3>What'll you have?</h3>
             </div>
+        </div>
+    </div>
+    <div class="row mx-auto">
+
+        <% @cocktails.each do |cocktail| %>
+            <% if cocktail.photo.attached? %>
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="cocktail-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path cocktail.photo.key %>')">
+                        <%= link_to content_tag(:span, cocktail.name.split.map(&:capitalize).join(' ')), cocktail_path(cocktail)%>
+                    </div>
+                </div>
+            <% else %>
+                 <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="cocktail-card" style="background-color: grey)%>
+                    </div>
+            <% end %>
+
         <% end %>
     </div>
 </div>

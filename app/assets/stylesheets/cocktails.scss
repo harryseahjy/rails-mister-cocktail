@@ -1,3 +1,37 @@
 // Place all the styles related to the cocktails controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+$forest: #274029;
+
+body {
+    background-color: $forest;
+}
+
+.dropdown-menu {
+    left: -100px !important;
+}
+
+.cocktail-image {
+    background-size: cover;
+    background-position: center;
+    margin-top: -54px;
+}
+
+.index-header {
+    color: white;
+}
+
+.cocktail-info {
+    color: white;
+    .btn {
+        background-color: gray;
+        border: 1px solid rgba(0,0,0,0.3) !important;
+    }
+    .list-group li {
+        color: black;
+    }
+}
+
+
+
