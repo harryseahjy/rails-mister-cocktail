@@ -1,22 +1,43 @@
+<div class="navbar">
+    <%= render "layouts/navbar" %>
+</div>
 <div class="show-main-container container">
-    <div class="row">
-        <div class="cocktail-image"></div>
-    </div>
-    <div class="row">
+
+    <div class="row mx-auto d-flex justify-content-center my-5">
         <div class="cocktail-info">
             <h1><%= @cocktail.name.split.map(&:capitalize).join(" ") %></h1>
         </div>
     </div>
-    <div class="row">
-        <div class="doses-info">
+
+    <div class="row d-flex justify-content-between flex-row">
+        <div class="doses-info col-5">
             <h4>Ingredients:</h4>
-            <ul>
+            <ul class="list-group">
                 <% @doses.each do |dose| %>
-                <li><%= dose %></li>
+                <li class="list-group-item"><%= dose %></li>
                 <% end %>
             </ul>
         </div>
+
+        <div class="cocktail-image col-6">
+            <% if @cocktail.photo.attached? %>
+                <%= cl_image_tag @cocktail.photo.key, height: 300 %>
+            <% else %>
+                <p><%= "no photo" %></p>
+            <% end %>
+        </div>
     </div>
-    <%= link_to "Add Dose", new_cocktail_dose_path(@cocktail) %>
+
+    <div class="row">
+        <div class="new-dose-form col-12">
+            <%= simple_form_for [@cocktail, @new_dose], url: cocktail_doses_path(@cocktail), html: { class: 'px-4 py-3' }  do |f| %>
+                  <%= f.input :description, label:"Amount of:", placeholder: 'Amount' %>
+                  <%= f.input :ingredient, label:"Ingredient" , as: :select, collection: Ingredient::ALL_INGREDIENTS.map {|ingredient| [ingredient.name.capitalize, ingredient.id] } %>
+
+                  <%= f.button :submit, 'Add dose', class: 'btn btn-primary btn-block' %>
+            <% end %>
+        </div>
+    </div>
+
 </div>
 

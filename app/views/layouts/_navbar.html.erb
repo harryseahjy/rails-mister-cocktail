@@ -1,0 +1,18 @@
+
+    <%= link_to "Drinks", root_path %>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        + Add Drink
+      </button>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= simple_form_for @new_cocktail, html: { class: 'px-4 py-3' } do |f| %>
+              <%= f.input :name, label:false, placeholder: 'Cocktail Name' %>
+              <!--This line automatically creates ActiveStorage for images-->
+              <%= f.input :photo, as: :file%>
+              <%= f.button :submit, 'Add 🍺', class: 'btn btn-primary btn-block' %>
+        <% end %>
+      </div>
+    </div>
+

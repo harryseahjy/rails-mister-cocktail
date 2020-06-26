@@ -3,6 +3,7 @@
     <%= simple_form_for [@cocktail, @dose],  html: { class: 'px-4 py-3' }  do |f| %>
           <%= f.input :description, label:"Amount of:", placeholder: 'Amount' %>
           <%= f.input :ingredient, label:"Ingredient" , as: :select, collection: Ingredient::ALL_INGREDIENTS.map {|ingredient| [ingredient.name.capitalize, ingredient.id] } %>
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
           <%= f.button :submit, 'Add 🍺', class: 'btn btn-primary btn-block' %>
     <% end %>
 </div>

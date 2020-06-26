@@ -19,6 +19,8 @@ require 'open-uri'
 9.times do
   data = JSON.parse(open('https://www.thecocktaildb.com/api/json/v1/1/random.php').read)['drinks'][0]
   cocktail = Cocktail.create(name: data['strDrink'].downcase)
+
+  cocktail.photo.attach(io: open(data['strDrinkThumb']), filename: "#{data['strDrink']}.jpg", content_type: 'image/png')
   ingredients = []
   ingredient_names = data.select { |key, _| key.to_s.match(/strIngredient/) }.values.compact
   ingredient_names.each do |name|
